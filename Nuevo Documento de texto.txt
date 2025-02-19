@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nomenclatura Química</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Nomenclatura de Compuestos Iónicos</h1>
+  </header>
+
+  <main>
+    <section class="introduccion">
+      <h2>Introducción</h2>
+      <p>
+        Los compuestos iónicos se forman cuando un catión (ion con carga positiva) se combina con un anión (ion con carga negativa).
+        Su nomenclatura se basa en el nombre del catión seguido del nombre del anión.
+      </p>
+    </section>
+
+    <!-- Tablas de iones (se mantienen o se pueden actualizar según lo necesites) -->
+    <section class="tablas-iones">
+      <h2>Cationes Comunes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>+1</th>
+            <th>+2</th>
+            <th>+3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Na⁺</td>
+            <td>Ca²⁺</td>
+            <td>Fe³⁺</td>
+          </tr>
+          <tr>
+            <td>K⁺</td>
+            <td>Mg²⁺</td>
+            <td>Al³⁺</td>
+          </tr>
+          <tr>
+            <td>Cu⁺</td>
+            <td>Fe²⁺</td>
+            <td>Cr³⁺</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Aniones Comunes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>-1</th>
+            <th>-2</th>
+            <th>-3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cl⁻</td>
+            <td>SO₄²⁻</td>
+            <td>PO₄³⁻</td>
+          </tr>
+          <tr>
+            <td>Br⁻</td>
+            <td>CO₃²⁻</td>
+            <td>AsO₄³⁻</td>
+          </tr>
+          <tr>
+            <td>I⁻</td>
+            <td>O²⁻</td>
+            <td>N³⁻</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Instrucción para seleccionar iones -->
+    <section class="instrucciones">
+      <p class="instruccion-ruleta">Gira las ruletas para seleccionar un catión y un anión y generar un compuesto iónico.</p>
+    </section>
+
+    <!-- Ruletas -->
+    <section class="ruletas-container">
+      <div class="ruleta">
+        <h3>Catión</h3>
+        <div class="ruleta-box">
+          <div id="ruleta-cationes" class="ruleta-inner">Na⁺ (Sodio)</div>
+        </div>
+        <button onclick="girarRuleta('cationes')">Girar</button>
+      </div>
+
+      <div class="ruleta">
+        <h3>Anión</h3>
+        <div class="ruleta-box">
+          <div id="ruleta-aniones" class="ruleta-inner">Cl⁻ (Cloruro)</div>
+        </div>
+        <button onclick="girarRuleta('aniones')">Girar</button>
+      </div>
+    </section>
+
+    <!-- Instrucción para revelar resultados -->
+    <section class="instrucciones">
+      <p class="instruccion-botones">Presiona los botones de abajo para revelar la fórmula y el nombre del compuesto generado.</p>
+    </section>
+
+    <!-- Botones y resultados -->
+    <section id="resultado">
+      <h2>Compuesto Generado</h2>
+      <div class="botones-resultado">
+        <button onclick="mostrarFormula()">Mostrar fórmula</button>
+        <button onclick="mostrarNombre()">Mostrar nombre</button>
+      </div>
+      <div class="resultados">
+        <p id="resultado-formula" class="resultado-texto"></p>
+        <p id="resultado-nombre" class="resultado-texto"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

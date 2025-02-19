@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta Interactiva - Nomenclatura Química</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Ruleta Interactiva</h1>
+  </header>
+  
+  <main>
+    <!-- Sección de instrucciones para la ruleta -->
+    <section class="instrucciones">
+      <p class="instruccion-ruleta">Gira las ruletas para seleccionar un catión y un anión y generar un compuesto iónico.</p>
+    </section>
+
+    <!-- Sección de ruletas -->
+    <section class="ruletas-container">
+      <div class="ruleta">
+        <h3>Catión</h3>
+        <div class="ruleta-box">
+          <div id="ruleta-cationes" class="ruleta-inner">Na⁺ (Sodio)</div>
+        </div>
+        <button onclick="girarRuleta('cationes')">Girar</button>
+      </div>
+
+      <div class="ruleta">
+        <h3>Anión</h3>
+        <div class="ruleta-box">
+          <div id="ruleta-aniones" class="ruleta-inner">Cl⁻ (Cloruro)</div>
+        </div>
+        <button onclick="girarRuleta('aniones')">Girar</button>
+      </div>
+    </section>
+
+    <!-- Sección de botones y resultados -->
+    <section id="resultado">
+      <h2>Compuesto Generado</h2>
+      <div class="botones-resultado">
+        <button onclick="mostrarFormula()">Mostrar fórmula</button>
+        <button onclick="mostrarNombre()">Mostrar nombre</button>
+      </div>
+      <div class="resultados">
+        <p id="resultado-formula" class="resultado-texto"></p>
+        <p id="resultado-nombre" class="resultado-texto"></p>
+      </div>
+    </section>
+
+    <!-- Botón para volver a la página principal -->
+    <section class="volver">
+      <button onclick="window.location.href='index.html'">Volver a la Página Principal</button>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
