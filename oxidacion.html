@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Números de Oxidación</title>
+  <link rel="stylesheet" href="styles2.css" />
+</head>
+<body>
+  <header>
+    <h1>Números de Oxidación</h1>
+  </header>
+
+  <!-- Sección de introducción con subtítulos -->
+  <section class="intro-section">
+    <img src="img.jpeg" alt="Imagen representativa de la tabla periódica" class="intro-image" />
+
+    <div class="intro-text">
+      <h2>Números de Oxidación</h2>
+      
+      <h3>Concepto general</h3>
+      <p>
+        Los números de oxidación (o estados de oxidación) indican la carga hipotética que un 
+        átomo tendría si todos los enlaces fueran completamente iónicos. Antiguamente, se hablaba 
+        de "valencia" para describir el número de enlaces que un átomo podía formar; sin embargo, 
+        el concepto de número de oxidación es más formal y preciso en la química moderna.
+      </p>
+
+      <h3>Importancia en la Química</h3>
+      <p>
+        Conocer los números de oxidación es fundamental para escribir fórmulas, balancear 
+        ecuaciones químicas e identificar procesos de óxido-reducción. En la química inorgánica, 
+        por ejemplo, el hierro puede encontrarse con número de oxidación +2 (Fe<sup>2+</sup>) o 
+        +3 (Fe<sup>3+</sup>), lo que explica la existencia de compuestos como FeO (óxido ferroso) 
+        y Fe<sub>2</sub>O<sub>3</sub> (óxido férrico). 
+      </p>
+
+      <h3>Aplicaciones y Ejemplos</h3>
+      <p>
+        Los números de oxidación permiten predecir la reactividad y las propiedades de los elementos, 
+        así como la manera en que se combinan para formar compuestos. Además, son esenciales para 
+        comprender reacciones REDOX (reducción y oxidación), balancear ecuaciones e incluso analizar 
+        la estructura electrónica de moléculas más complejas en áreas como la química orgánica y 
+        bioquímica.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sección que separa la introducción de la parte de memorización -->
+  <section class="separator"></section>
+
+  <main class="cards-section">
+    <!-- Instrucciones para el uso de las tarjetas -->
+    <div class="cards-instructions">
+      <h2>Cómo usar estas tarjetas</h2>
+      <p>
+        A continuación verás una tarjeta que muestra el símbolo y el nombre de un elemento.  
+        Debajo de la tarjeta se generan automáticamente los campos para que ingreses los números 
+        de oxidación que consideres adecuados. Presiona el botón "Revisar" para comprobar tu 
+        respuesta y sigue practicando con el botón "Siguiente Elemento".
+      </p>
+    </div>
+
+    <!-- Tarjeta del Elemento -->
+    <section class="contenedor-tarjeta">
+      <div class="tarjeta" id="tarjeta-elemento">
+        <!-- Los números de oxidación correctos, mostrados como superíndices sobre el símbolo -->
+        <div id="element-charges" class="charges"></div>
+        <!-- Símbolo en grande -->
+        <h2 id="element-symbol">Xx</h2>
+        <!-- Nombre del elemento -->
+        <p id="element-name">Nombre</p>
+      </div>
+    </section>
+
+    <!-- Inputs para ingresar los números de oxidación -->
+    <section class="inputs-container" id="inputs-container">
+      <!-- Se generarán aquí los <input> dependiendo de la cantidad de números de oxidación -->
+      <button onclick="revisarRespuesta()">Revisar</button>
+    </section>
+
+    <!-- Sección de resultados -->
+    <section class="resultado">
+      <p>Aciertos: <span id="aciertos">0</span></p>
+      <p>Errores: <span id="errores">0</span></p>
+      <p id="mensaje"></p>
+      <button onclick="siguienteElemento()">Siguiente Elemento</button>
+    </section>
+  </main>
+
+  <!-- Celebración (animación) -->
+  <div class="celebration" id="celebration">
+    <p id="celebration-text">¡Correcto! 🎉</p>
+  </div>
+
+  <!-- Sección de autores en el footer -->
+  <footer>
+    <p>
+      Creado por: 
+      <strong>MC Ruben Dario Zarazua Martinez</strong> y 
+      <strong>MC Enrique Gonzalez Rogriguez</strong> |
+      Contacto: <a href="ruzarazua@uat.edu.mx">ruzarazua@uat.edu.mx</a>
+    </p>
+  </footer>
+
+  <script src="script2.js"></script>
+</body>
+</html>
