@@ -623,6 +623,7 @@ function revisarRespuesta() {
     errores++;
     document.getElementById("errores").innerText = errores;
     document.getElementById("mensaje").innerText = "Incorrecto, intenta de nuevo.";
+    mostrarError();
   }
 }
 
@@ -666,15 +667,141 @@ function mostrarValenciasCorrectas(elemento) {
   }
 }
 
-// Animación de celebración
-function mostrarCelebracion() {
-  const celebration = document.getElementById("celebration");
-  celebration.classList.add("active");
-  // Quitar la clase active tras 1.5 segundos
-  setTimeout(() => {
-    celebration.classList.remove("active");
-  }, 1500);
+// Lista de GIFs para aciertos
+const gifsAcierto = [
+    "https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif",
+"https://media.giphy.com/media/l3vRlT2k2L35Cnn5C/giphy.gif?cid=ecf05e47mx16vlikraqyinat26ixy5tpoegkn0jq5n9tzo2x&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/StK13Ad9lHtdo1IqFA/giphy.gif?cid=ecf05e47mx16vlikraqyinat26ixy5tpoegkn0jq5n9tzo2x&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif?cid=ecf05e47mx16vlikraqyinat26ixy5tpoegkn0jq5n9tzo2x&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/QsZol42CPIjMzke1QW/giphy.gif?cid=ecf05e47mx16vlikraqyinat26ixy5tpoegkn0jq5n9tzo2x&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/KPgOYtIRnFOOk/giphy.gif?cid=ecf05e47vdch8drm2bysrkhqllh1n52bwjkwuplf9tmxwe4x&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/Rlwz4m0aHgXH13jyrE/giphy.gif?cid=ecf05e473qwlmq33kmr7nuk76o8lz17q8uoxoq9u4dffujsb&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/VRKheDy4DkBMrQm66p/giphy.gif?cid=ecf05e473qwlmq33kmr7nuk76o8lz17q8uoxoq9u4dffujsb&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/zfNAMCrhSQzte/giphy.gif?cid=ecf05e47hy759ntysm1kw7mllrkspk0ac80u1l7izhneyk9a&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/u9ntJMbnX7orBnNtbx/giphy.gif?cid=ecf05e47hy759ntysm1kw7mllrkspk0ac80u1l7izhneyk9a&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/qVfJX3Si7MLkOksNMB/giphy.gif?cid=ecf05e47hy759ntysm1kw7mllrkspk0ac80u1l7izhneyk9a&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/olAik8MhYOB9K/giphy.gif?cid=ecf05e47hy759ntysm1kw7mllrkspk0ac80u1l7izhneyk9a&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/Y5pJPmh9IWMKc/giphy.gif?cid=ecf05e47hy759ntysm1kw7mllrkspk0ac80u1l7izhneyk9a&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/wAxlCmeX1ri1y/giphy.gif?cid=ecf05e47oyxttm7wur17d37gxvxwv62nj14r3lk7qazorja9&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/okfvUCpgArv3y/giphy.gif?cid=ecf05e47oyxttm7wur17d37gxvxwv62nj14r3lk7qazorja9&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif?cid=ecf05e47oyxttm7wur17d37gxvxwv62nj14r3lk7qazorja9&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/dmvodzjX8wU7icE3TL/giphy.gif?cid=ecf05e47oyxttm7wur17d37gxvxwv62nj14r3lk7qazorja9&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/joYf3Ba2phD15ch9Nt/giphy.gif?cid=ecf05e474w08d3nvwytuj5xuhjg9hly4nam7evsc7vxfgwwh&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWNld3E1eWZ2ZGR4NjNkb3R3cnV0cGY2OHNqMG5qemY0aThjOGFnNiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/t3sZxY5zS5B0z5zMIz/giphy.gif",
+"https://media.giphy.com/media/voMyf7YAM2GjSx0Yw9/giphy.gif?cid=790b7611mcewq5yfvddx63dotwrutpf68sj0njzf4i8c8ag6&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/3oz8xQQP4ahKiyuxHy/giphy.gif?cid=ecf05e47cntdq6ni3jlnzw62i0v09fuqybh1xb6csyu7w4el&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaHA3NXd4aWd4czM4ZzBlYTRkY29zdTRpcmxodzJwb2dpZ3ozMzJtaSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/4xpB3eE00FfBm/giphy.gif",
+"https://media.giphy.com/media/XreQmk7ETCak0/giphy.gif?cid=ecf05e474u95s1llrtrjogo4o20mgxz379c6anfmn9d6ckse&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/lvOnlEYunAwOkHjgmU/giphy.gif?cid=ecf05e474u95s1llrtrjogo4o20mgxz379c6anfmn9d6ckse&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/g9SURfIJouBck/giphy.gif?cid=ecf05e47mefnjy0qluk5joa8l59i3tryn8sze50ddxho7pfb&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/l4Jz3a8jO92crUlWM/giphy.gif?cid=ecf05e47a1ouh68aqkjrai9hn0m6jkh10ajbsnbkd2uald4b&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/1ofR3QioNy264/giphy.gif?cid=ecf05e471ue3u3aurr1dm3c4oovljc5ox3rl1tvwlzkgeg43&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/xvWLAWTMsaEtG/giphy.gif?cid=ecf05e475e93igur9zw5qhan9lzbasbc9yfaldge9i3wxxzk&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/bKBM7H63PIykM/giphy.gif?cid=ecf05e475e93igur9zw5qhan9lzbasbc9yfaldge9i3wxxzk&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/l4FGkf5yXSR7FgMQU/giphy.gif?cid=ecf05e47tqfyqg0gg73k026zm6wdi5lqicd4finbe2q6kkpe&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/mbHB65fPHLNtu/giphy.gif?cid=ecf05e47vxknb7q7pot3a215uswuicd4tdvbsw1nmfw9b6id&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/Um3ljJl8jrnHy/giphy.gif?cid=790b7611ruj08pjvkiiv7fwbn6u79oji6nqtlgi6gzthb7dg&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/VRKheDy4DkBMrQm66p/giphy.gif?cid=ecf05e47530o05jyjnkfm9bkndqzavhi5h3dslmaq0sm1gaw&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/kd9BlRovbPOykLBMqX/giphy.gif?cid=ecf05e47a086m03i0are07mydk2wnxxx8utosbniujav8tra&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+
+
+
+];
+
+
+
+
+// Lista de GIFs para errores
+const gifsError = [
+    "https://media.giphy.com/media/WTjnWYENpLxS8JQ5rz/giphy.gif?cid=ecf05e472wceod24bnaie2ge9j5nxsn9stddkubot6nx7e7d&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/d2ZcfODrNWlA5Gg0/giphy.gif?cid=ecf05e47t7s6ngyttlt7e52jwnt77hw19tf9h0j89v1qlbpu&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/eKrgVyZ7zLvJrgZNZn/giphy.gif?cid=ecf05e47t7s6ngyttlt7e52jwnt77hw19tf9h0j89v1qlbpu&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/LOEI8jsNKPmzdJYvhJ/giphy.gif?cid=ecf05e47t7s6ngyttlt7e52jwnt77hw19tf9h0j89v1qlbpu&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif?cid=ecf05e47t7s6ngyttlt7e52jwnt77hw19tf9h0j89v1qlbpu&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/sU6yN4mPVwP7wiXB9v/giphy.gif?cid=ecf05e47mo07lb0n8r7g3ghoy4x1hsdglsd8j5wnd3thguek&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/vyTnNTrs3wqQ0UIvwE/giphy.gif?cid=ecf05e47cntdq6ni3jlnzw62i0v09fuqybh1xb6csyu7w4el&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/4zXbvOphyf3TZbAz52/giphy.gif?cid=ecf05e47cntdq6ni3jlnzw62i0v09fuqybh1xb6csyu7w4el&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/wofftnAdDtx4s/giphy.gif?cid=ecf05e47i1u4f3k4eblzl1yt1w1khfx0dq1n1sspwhf5gkus&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/C0jvtLgeFpZ8R3BulF/giphy.gif?cid=ecf05e47i1iewqz2obevii0aue01jbb37jf93fbn5c2ne9fv&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/26tP1TiiRIF0rLhWU/giphy.gif?cid=ecf05e47i1iewqz2obevii0aue01jbb37jf93fbn5c2ne9fv&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/mCRJDo24UvJMA/giphy.gif?cid=ecf05e47i1iewqz2obevii0aue01jbb37jf93fbn5c2ne9fv&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/60rUVyj8ShyuEhHbaz/giphy.gif?cid=ecf05e47k3lchf7k6irrevtvxgjbf7sj75n3s2pmjzmo29l9&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/26tOXgoz0WNQhwb04/giphy.gif?cid=ecf05e47k3lchf7k6irrevtvxgjbf7sj75n3s2pmjzmo29l9&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/26tPskka6guetcHle/giphy.gif?cid=ecf05e47xs5ind7f4urzy8zfgbz2gulgq6rgt6rjyrbfzvdz&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/3Hywrgqw2B9mg/giphy.gif?cid=ecf05e47xs5ind7f4urzy8zfgbz2gulgq6rgt6rjyrbfzvdz&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZGcybnM3NTl2bDA5cHRyenNlbGlmcDY3aHU5MjRiZWV0dDhwcHhpZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/YTJXDIivNMPuNSMgc0/giphy.gif",
+"https://media.giphy.com/media/3ohs4qw8hkPShGeanS/giphy.gif?cid=790b7611dg2ns759vl09ptrzselifp67hu924beett8ppxif&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/S6GmIwq0c6zSAC7OYZ/giphy.gif?cid=790b7611dg2ns759vl09ptrzselifp67hu924beett8ppxif&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/SjRgoSG1RTpYs/giphy.gif?cid=790b7611dg2ns759vl09ptrzselifp67hu924beett8ppxif&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/57WEsxpUr3bTG/giphy.gif?cid=ecf05e47z8fgto0yoe77u1sizrlwa66sl0iehdiujdi3pvmj&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/O5pd2oPjjcGFW/giphy.gif?cid=ecf05e47z8fgto0yoe77u1sizrlwa66sl0iehdiujdi3pvmj&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/UkaZpqcieR38c/giphy.gif?cid=ecf05e47z8fgto0yoe77u1sizrlwa66sl0iehdiujdi3pvmj&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/Ub8XEam5vXbMY/giphy.gif?cid=ecf05e472ln7enzwchj5ns3ohu6705q6fw35zk5blgy3mgvf&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/8SQwBWknR1Hos/giphy.gif?cid=ecf05e47tl70sdnrw8zoygxl6rtejtn9h637fsxqv269uy6d&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/yFQ0ywscgobJK/giphy.gif?cid=ecf05e47tl70sdnrw8zoygxl6rtejtn9h637fsxqv269uy6d&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/jNJArHGdYK1Gw/giphy.gif?cid=ecf05e47idqc7sac8xrrom05kvo7wxn0v8qftb0eehs4w2g4&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/5xtDarLmwz5ma8nfmG4/giphy.gif?cid=ecf05e47idqc7sac8xrrom05kvo7wxn0v8qftb0eehs4w2g4&ep=v1_gifs_related&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/kaq6GnxDlJaBq/giphy.gif?cid=790b7611ruj08pjvkiiv7fwbn6u79oji6nqtlgi6gzthb7dg&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/QMHoU66sBXqqLqYvGO/giphy.gif?cid=790b7611ruj08pjvkiiv7fwbn6u79oji6nqtlgi6gzthb7dg&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/xL7PDV9frcudO/giphy.gif?cid=790b7611ruj08pjvkiiv7fwbn6u79oji6nqtlgi6gzthb7dg&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/ZechFo0yBIQpEve1Sm/giphy.gif?cid=ecf05e47530o05jyjnkfm9bkndqzavhi5h3dslmaq0sm1gaw&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/Z5xk7fGO5FjjTElnpT/giphy.gif?cid=ecf05e47530o05jyjnkfm9bkndqzavhi5h3dslmaq0sm1gaw&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/JyW51lx5XMDgQ/giphy.gif?cid=ecf05e4792accgx5wr4cerc78tqygaexldu2pg5543ocr95y&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+"https://media.giphy.com/media/rfqHxai5XJnuU/giphy.gif?cid=ecf05e47qtrwn02vq240clozc82wlw1kmdj4r0wpi7nxfy9l&ep=v1_gifs_search&rid=giphy.gif&ct=g"
+
+
+];
+
+function obtenerGifAleatorio(lista) {
+    const indice = Math.floor(Math.random() * lista.length); // Elegir un índice aleatorio
+    return lista[indice];
 }
+
+function mostrarCelebracion() {
+    const celebration = document.getElementById("celebration");
+    const celebrationImg = document.getElementById("celebration-img"); // Asegúrate de tener este ID en el HTML
+
+    // Obtener un GIF aleatorio de la lista de aciertos
+    celebrationImg.src = obtenerGifAleatorio(gifsAcierto);
+
+    // Mostrar la ventana de celebración
+    celebration.classList.add("active");
+
+    // Esperar un clic para cerrarlo
+    setTimeout(() => {
+        document.addEventListener("click", ocultarCelebracion);
+    }, 500);
+}
+
+function ocultarCelebracion() {
+    const celebration = document.getElementById("celebration");
+    celebration.classList.remove("active");
+    document.removeEventListener("click", ocultarCelebracion);
+}
+
+function mostrarError() {
+    const error = document.getElementById("error");
+    const errorImg = document.getElementById("error-img"); // Asegúrate de tener este ID en el HTML
+
+    // Obtener un GIF aleatorio de la lista de errores
+    errorImg.src = obtenerGifAleatorio(gifsError);
+
+    // Mostrar la ventana de error
+    error.classList.add("active");
+
+    // Esperar un clic para cerrarlo
+    setTimeout(() => {
+        document.addEventListener("click", ocultarError);
+    }, 500);
+}
+
+function ocultarError() {
+    const error = document.getElementById("error");
+    error.classList.remove("active");
+    document.removeEventListener("click", ocultarError);
+}
+
+
 
 // Generar un color aleatorio en formato HEX
 function getRandomColor() {
